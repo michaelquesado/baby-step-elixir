@@ -32,3 +32,32 @@ y = %{"foo" => "bar", "bar" => "foo"}
 y["foo"]
 
 {x | foo: "foobar"} # update maps key value
+
+## ENUM ##
+Enum.sort([5,4,3,2,1,0])
+
+Enum.map([1,2,3,4,5], fn elem -> elem + 1 end)
+
+Enum.reduce(%{a: 1, b: 2}, %{}, fn {k, v}, acc -> Map.put(acc, k, v + 1) end) # %{a: 2, b: 3}
+
+## Pattern Matching ##
+[foo, bar] = ["foo", "bar"] # foo = "foo", bar = "bar"
+[head | tail] [1,3,4] # head = 1, tail = [3,4]
+
+%{foo: value} = %{a: 1, some_key: "any", foo: "bar"} # value = "bar" only maps can get a value without declare others values
+
+{:ok, result} = {:ok, "foobar"} # result = "foobar"
+
+readFile = fn
+  {:ok, result} -> "the result: #{result}"
+  {:error, result} -> "the error: #{result}"
+end
+#elixir pattern matching by the paramns reciveds
+readFile.({:ok, "success is appended"}) # "the result: success is appended"
+readFile.({:error, "error is appended"}) # "the error: error is appended"
+readFile.(File.read("./file.txt"))
+
+## Pipe Operator ##
+x = "  QueSadO  "
+x = String.trim(x) |> String.downcase() # the first argument it's always implicit and can not change order always well be the first
+x # "quesado"
