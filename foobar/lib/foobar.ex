@@ -1,7 +1,8 @@
 defmodule Foobar do
   def build (file_name) do
-    file = File.read(file_name)
-    handler_file(file)
+    file_name        |>
+      File.read()    |>
+      handler_file()
   end
 
   def handler_file ({:ok, result }) do result end
