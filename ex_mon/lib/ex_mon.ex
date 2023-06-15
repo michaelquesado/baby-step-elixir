@@ -8,8 +8,9 @@ defmodule ExMon do
   end
   # ExMon.init_game(player)
   def init_game (player) do
-    pc = Player.build(@pc, :chute, :soco, :cura)
-    Game.start(pc, player)
+    @pc
+    |> Player.build(:chute, :soco, :cura)
+    |> Game.start(player)
   end
 
 end
