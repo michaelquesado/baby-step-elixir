@@ -8,13 +8,14 @@ defmodule Foobar do
       |> handler_file()
   end
 
-  def handler_file({:ok, result }) do
-    result
+  def handler_file({:ok, content }) do
+    result = content
       |> String.split(",")
       |> Enum.map(&convert_and_evaluate/1)
+    {:ok, result}
   end
 
-  def handler_file({:error, reason }) do reason end
+  def handler_file({:error, reason }) do {:error, reason} end
 
   def convert_and_evaluate (elem) do
     number = String.to_integer(elem)
@@ -26,5 +27,4 @@ defmodule Foobar do
   def evaluate(number) when is_foo(number), do: :foo
   def evaluate(number) when is_bar(number), do: :bar
   def evaluate(number), do: number
-  def evaluate(a, _b), do: a
 end
