@@ -10,4 +10,8 @@ defmodule ExMon.Games.Actions do
   defp find_move(moves, move) do
     Enum.find_value(moves, {:error, move}, fn {_key, value} -> if value == move, do: {:ok, move} end)
   end
+
+  def attack(move) do
+    move
+  end
 end
