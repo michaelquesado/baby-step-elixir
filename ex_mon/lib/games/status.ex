@@ -1,4 +1,4 @@
-defmodule Exmon.Games.Status do
+defmodule ExMon.Games.Status do
   alias ExMon.Game
 
   def round_message do
