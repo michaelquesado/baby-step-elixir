@@ -2,7 +2,7 @@ defmodule ExMon.Game do
   use Agent
 
   def start(pc, player) do
-    game_info = %{computer: pc, player: player, turn: :player, status: :stated}
+    game_info = %{pc: pc, player: player, turn: :player, status: :stated}
     Agent.start_link(fn -> game_info end, name: __MODULE__)
   end
 
@@ -10,13 +10,7 @@ defmodule ExMon.Game do
     Agent.get(__MODULE__, & &1)
   end
 
-  def player do
-    Map.get(info(), :player)
-  end
-
-  def pc do
-    Map.get(info(), :pc)
-  end
+  def fetch_player(player), do: Map.get(info(), player)
 
   def turn, do: Map.get(info(), :turn)
 end
