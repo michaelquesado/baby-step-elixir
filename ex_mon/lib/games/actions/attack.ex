@@ -1,10 +1,11 @@
 defmodule ExMon.Games.Actions.Attack do
   alias ExMon.Game
+  alias ExMon.Games.Status
+
   @move_rnd 10..35
   @move_avg 18..25
 
   def opponent(op, move) do
-    IO.inspect(op)
     calculate_power(move)
      |> take_demage(op)
   end
@@ -22,6 +23,7 @@ defmodule ExMon.Games.Actions.Attack do
     |> Map.put(player, op)
     |> Game.update()
 
+    Status.attack_message(player, demage)
   end
 
   defp make_demage(life, demage) when life - demage < 0, do: 0
