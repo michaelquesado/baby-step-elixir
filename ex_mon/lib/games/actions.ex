@@ -1,5 +1,6 @@
 defmodule ExMon.Games.Actions do
   alias ExMon.Game
+  alias ExMon.Games.Actions.Attack
 
   def fetch_move(move) do
     Game.player()
@@ -12,6 +13,9 @@ defmodule ExMon.Games.Actions do
   end
 
   def attack(move) do
-    move
+    case Game.turn() do
+      :player -> Attack.opponent(Game.pc(), move)
+      :pc     -> Attack.opponent(Game.player(), move)
+    end
   end
 end
