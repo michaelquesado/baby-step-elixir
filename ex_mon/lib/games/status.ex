@@ -25,4 +25,6 @@ defmodule ExMon.Games.Status do
   def attack_message(:player, demage), do: IO.puts("\n-- The pc attack player with #{demage} of demage")
   def attack_message(:pc, demage), do: IO.puts("\n-- The player attack pc with #{demage} of demage")
 
+  def heal_message(who, amount), do: IO.puts("\n-- The #{who} healed with #{amount}")
+
 end

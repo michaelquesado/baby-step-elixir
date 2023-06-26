@@ -26,7 +26,7 @@ defmodule ExMon do
   defp do_move({:error, move}), do: Status.invalid_move(move)
   defp do_move({:ok, move}) do
     case move do
-      :cura -> "realiza cura"
+      :cura -> Actions.heal()
       move -> Actions.attack(move)
     end
 

@@ -18,4 +18,12 @@ defmodule ExMon.Games.Actions do
       :pc     -> Attack.opponent(Game.fetch_player(:player), move, :player)
     end
   end
+
+  def heal do
+    case Game.turn() do
+      :player -> Heal.life(:player)
+      :pc -> Heal.life(:pc)
+    end
+  end
+
 end
