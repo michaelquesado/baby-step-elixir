@@ -14,8 +14,8 @@ defmodule ExMon.Games.Actions do
 
   def attack(move) do
     case Game.turn() do
-      :player -> Attack.opponent(Game.fetch_player(:pc), move)
-      :pc     -> Attack.opponent(Game.fetch_player(:player), move)
+      :player -> Attack.opponent(Game.fetch_player(:pc), move, :pc)
+      :pc     -> Attack.opponent(Game.fetch_player(:player), move, :player)
     end
   end
 end
