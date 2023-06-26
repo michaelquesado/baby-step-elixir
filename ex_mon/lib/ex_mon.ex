@@ -14,7 +14,7 @@ defmodule ExMon do
     |> Player.build(:chute, :soco, :cura)
     |> Game.start(player)
 
-    Status.round_message()
+    Status.round_message(Game.info())
   end
 
   def make_move(move) do
@@ -29,6 +29,8 @@ defmodule ExMon do
       :cura -> "realiza cura"
       move -> Actions.attack(move)
     end
+
+    Status.round_message(Game.info())
   end
 
 
