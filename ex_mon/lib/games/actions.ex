@@ -1,6 +1,6 @@
 defmodule ExMon.Games.Actions do
   alias ExMon.Game
-  alias ExMon.Games.Actions.Attack
+  alias ExMon.Games.Actions.{Attack,Heal}
 
   def fetch_move(move) do
    Game.fetch_player(:player)
