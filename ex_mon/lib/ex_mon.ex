@@ -18,9 +18,13 @@ defmodule ExMon do
   end
 
   def make_move(move) do
-    move
-    |> Actions.fetch_move()
-    |> do_move()
+    case Map.get(Game.info(), :status) do
+      :game_over -> Status.round_message(Game.info())
+      _ -> move
+      |> Actions.fetch_move()
+      |> do_move()
+    end
+
 
     pc_move(Game.info())
   end
