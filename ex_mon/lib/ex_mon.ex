@@ -21,6 +21,8 @@ defmodule ExMon do
     move
     |> Actions.fetch_move()
     |> do_move()
+
+    pc_move(Game.info())
   end
 
   defp do_move({:error, move}), do: Status.invalid_move(move)
@@ -33,5 +35,11 @@ defmodule ExMon do
     Status.round_message(Game.info())
   end
 
+  defp pc_move(%{turn: :pc, status: :continue}) do
+    {:ok, Enum.random([:chute, :soco, :cura])}
+     |>do_move()
+  end
+
+  defp pc_move(_), do: :ok
 
 end
