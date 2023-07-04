@@ -17,5 +17,8 @@ defmodule Bank.Users.User do
     user
       |> cast(params, @fields)
       |> validate_request(@fields)
+      |> validate_length(:name, min: 3)
+      |> validate_format(:email, ~r/@/)
+      |> validate_length(:cep, is: 8)
   end
 end
