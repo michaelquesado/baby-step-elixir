@@ -15,9 +15,10 @@ defmodule BankWeb.UserController do
     |> render(:create, user: user)
   end
 
-  # defp handle_response({:error, _changeset} = error, conn) do
-  #   conn
-  #   |> put_status(:bad_request)
-  #   |> render(:create, error: error)
-  # end
+  defp handle_response({:error, changeset}, conn) do
+    conn
+    |> put_status(:bad_request)
+    |> put_view(json: BankWeb.ErrorJSON)
+    |> render(:error, changeset: changeset)
+  end
 end
