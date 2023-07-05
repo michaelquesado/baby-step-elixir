@@ -1,24 +1,16 @@
 defmodule BankWeb.UserController do
   use BankWeb, :controller
 
-  alias Bank.Users.Create
+  alias Bank.Users.{Create, User}
+
+  action_fallback BankWeb.FallbackController
 
   def create(conn, params) do
-    params
-    |> Create.call()
-    |> handle_response(conn)
+    with {:ok, %User{} = user} <- Create.call(params) do
+      conn
+        |> put_status(:created)
+        |> render(:create, user: user)
+    end
   end
 
-  defp handle_response({:ok, user}, conn) do
-    conn
-    |> put_status(:created)
-    |> render(:create, user: user)
-  end
-
-  defp handle_response({:error, changeset}, conn) do
-    conn
-    |> put_status(:bad_request)
-    |> put_view(json: BankWeb.ErrorJSON)
-    |> render(:error, changeset: changeset)
-  end
 end
