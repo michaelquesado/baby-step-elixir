@@ -14,4 +14,13 @@ defmodule BankWeb.UserController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    IO.inspect(Users.get(id))
+    with {:ok, %User{} = user} <- Users.get(id) do
+      conn
+        |> put_status(:ok)
+        |> render(:show, user: user)
+    end
+  end
+
 end

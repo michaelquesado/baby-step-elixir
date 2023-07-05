@@ -8,6 +8,7 @@ defmodule BankWeb.Router do
   scope "/api", BankWeb do
     pipe_through :api
     post "/user", UserController, :create
+    get "/user/:id", UserController, :show
   end
 
   # Enable LiveDashboard in development
